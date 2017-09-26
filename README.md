@@ -1,6 +1,6 @@
 # odeon-scraper
 
-Cinelist, while useful, has [some problems with accuracy][issue]. This project
+CineList, while useful, has [some problems with accuracy][issue]. This project
 is an attempt to solve this for a single chain of cinemas, in an extremely
 fragile way.
 
@@ -8,7 +8,7 @@ fragile way.
 
 ## JSON API
 
-You can get responses similar to Cinelist's at URLs structured like the
+You can get responses similar to CineList's at URLs structured like the
 following:
 
     https://odeon-scraper.colons.co/odeon/<cinema-id>/
