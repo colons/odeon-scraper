@@ -11,7 +11,7 @@ fragile way.
 You can get responses similar to Cinelist's at URLs structured like the
 following:
 
-    https://odeon-scraper.colons.co/odeon/<cinema-id>/`
+    https://odeon-scraper.colons.co/odeon/<cinema-id>/
 
 Replace that `<cinema-id>` with an Odeon cinema ID. Odeon's branch URLs are
 structured as `http://www.odeon.co.uk/cinemas/<slug>/<cinema-id>/`. You can
