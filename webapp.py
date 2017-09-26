@@ -26,7 +26,9 @@ settings.configure(
 
 class JSONView(View):
     def dispatch(self, request, **kwargs):
-        return JsonResponse(self.get_api_stuff(**kwargs))
+        resp = JsonResponse(self.get_api_stuff(**kwargs))
+        resp['Access-Control-Allow-Origin'] = '*'
+        return resp
 
 
 class OdeonTimesView(JSONView):
