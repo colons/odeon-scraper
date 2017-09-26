@@ -6,7 +6,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.core.cache import cache
 from django.http import JsonResponse
-from django.views.generic import View
+from django.views.generic import RedirectView, View
 
 from scraper import get_screenings
 
@@ -48,6 +48,9 @@ class OdeonTimesView(JSONView):
 
 urlpatterns = [
     url(r'^odeon/(?P<odeon_id>\d+)/$', OdeonTimesView.as_view()),
+    url(r'^', RedirectView.as_view(
+        url='https://github.com/colons/odeon-scraper'
+    )),
 ]
 
 
