@@ -11,8 +11,6 @@ def get_screenings(cinema_id, date=None):
     soup = BeautifulSoup(resp.content, 'html5lib')
 
     for screening_element in soup.select('.film-detail'):
-        screening = {}
-
         name_element, = screening_element.select('.presentation-info h4')
         time_elements = screening_element.select('.times li a')
         screenings.append({
@@ -24,4 +22,5 @@ def get_screenings(cinema_id, date=None):
 
 
 if __name__ == '__main__':
-    print(get_screenings(104))
+    from sys import argv
+    print(get_screenings(argv[1]))
