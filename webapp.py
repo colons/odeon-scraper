@@ -1,8 +1,10 @@
+from datetime import date
 from os import environ
 
 from django.core.wsgi import get_wsgi_application
 from django.conf import settings
 from django.conf.urls import url
+from django.core.cache import cache
 from django.http import JsonResponse
 from django.views.generic import View
 
@@ -13,6 +15,12 @@ settings.configure(
     DEBUG=environ.get('DEBUG'),
     ALLOWED_HOSTS=['*'],
     ROOT_URLCONF=__name__,
+    CACHES={
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'TIMEOUT': 60 * 60 * 2,
+        }
+    }
 )
 
 
@@ -23,10 +31,19 @@ class JSONView(View):
 
 class OdeonTimesView(JSONView):
     def get_api_stuff(self, odeon_id):
-        return {
+        cache_key = 'odeon:{}:{}'.format(odeon_id, date.today().isoformat())
+        hit = cache.get(cache_key)
+
+        if hit is not None:
+            return hit
+
+        rv = {
             'status': 'ok',
             'listings': get_screenings(odeon_id),
         }
+
+        cache.set(cache_key, rv)
+        return rv
 
 
 urlpatterns = [
