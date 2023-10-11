@@ -1,4 +1,4 @@
-django>=1.11<1.12
+django>=1.11,<1.12
 requests
 beautifulsoup4
 html5lib
